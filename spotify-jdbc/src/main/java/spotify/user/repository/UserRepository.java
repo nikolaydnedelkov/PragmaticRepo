@@ -1,8 +1,10 @@
-package user.repository;
+package spotify.user.repository;
 
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import user.repository.mapper.UserRowMapper;
+import spotify.song.repository.Song;
+import spotify.song.repository.mapper.SongRowMapper;
+import spotify.user.repository.mapper.UserRowMapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +39,7 @@ public class UserRepository {
     }
 
     public User get(final long id) {
-        final String sql = "SELEC * FROM users WHERE id = " + id;
+        final String sql = "SELECT * FROM users WHERE id = " + id;
 
         return jdbcTemplate.queryForObject(sql, new HashMap<>(), new UserRowMapper());
     }
@@ -52,8 +54,8 @@ public class UserRepository {
                 + "SET first_name = :first_name,"
                 + "last_name = :last_name,"
                 + "email = :email,"
-                + "birth_date = :birth_date "
-                + "has_paid_app = :has_paid_app"
+                + "birth_date = :birth_date, "
+                + "has_paid_app = :has_paid_app "
                 + "WHERE id = :id";
 
         final Map<String, Object> params = new HashMap<>();
@@ -65,6 +67,12 @@ public class UserRepository {
         params.put("has_paid_app", user.isHasPaidApp());
 
         jdbcTemplate.update(sql, params);
+    }
+
+    public Song playSong(final long id) {
+        final String sql = "SELECT * FROM songs WHERE id = " + id;
+
+        return jdbcTemplate.queryForObject(sql, new HashMap<>(), new SongRowMapper());
     }
 
 }

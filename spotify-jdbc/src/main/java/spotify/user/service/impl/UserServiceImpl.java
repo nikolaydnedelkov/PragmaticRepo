@@ -1,9 +1,10 @@
-package user.service.impl;
+package spotify.user.service.impl;
 
 import org.springframework.stereotype.Service;
-import user.repository.User;
-import user.repository.UserRepository;
-import user.service.UserService;
+import spotify.song.repository.Song;
+import spotify.user.repository.User;
+import spotify.user.repository.UserRepository;
+import spotify.user.service.UserService;
 
 import java.util.List;
 
@@ -39,5 +40,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) {
         userRepository.update(user);
+    }
+
+    @Override
+    public Song playSong(long id) {
+        return userRepository.playSong(id);
     }
 }

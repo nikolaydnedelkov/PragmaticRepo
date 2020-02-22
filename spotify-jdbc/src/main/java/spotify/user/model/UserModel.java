@@ -1,18 +1,17 @@
-package user.repository;
+package spotify.user.model;
 
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Data
-public class User {
+public class UserModel {
 
     private long id;
     private String firstName;
     private String lastName;
     private String email;
-    private LocalDate birthDate;
+    private Date birthDate;
     private boolean hasPaidApp;
 
 }
-

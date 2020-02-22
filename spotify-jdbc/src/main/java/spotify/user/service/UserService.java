@@ -1,6 +1,7 @@
-package user.service;
+package spotify.user.service;
 
-import user.repository.User;
+import spotify.song.repository.Song;
+import spotify.user.repository.User;
 
 import java.util.List;
 
@@ -15,5 +16,7 @@ public interface UserService {
     List<User> getAllUsers();
 
     void update(User user);
+
+    Song playSong(long id);
 
 }

@@ -1,11 +1,10 @@
-package user.repository.mapper;
+package spotify.user.repository.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import user.repository.User;
+import spotify.user.repository.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class UserRowMapper implements RowMapper<User> {
 
@@ -16,7 +15,7 @@ public class UserRowMapper implements RowMapper<User> {
         user.setFirstName(rs.getString("first_name"));
         user.setLastName(rs.getString("last_name"));
         user.setEmail(rs.getString("email"));
-        user.setBirthDate(LocalDate.parse(rs.getString("birth_date")));
+        user.setBirthDate(rs.getDate("birth_date"));
         user.setHasPaidApp(rs.getBoolean("has_paid_app"));
         return user;
     }
